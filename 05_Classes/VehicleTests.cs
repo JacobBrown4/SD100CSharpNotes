@@ -66,6 +66,8 @@ namespace _05_Classes
             car.Model = "Corolla";
             car.Mileage = 2119021;
 
+
+            // New super awesome way
             Vehicle rocket = new Vehicle("SpaceX", "Falcon Heavy", 300000, VehicleType.Spaceship);
             Console.WriteLine(rocket.Make);
             Console.WriteLine(rocket.Model);
