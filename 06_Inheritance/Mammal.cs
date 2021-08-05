@@ -22,6 +22,37 @@ namespace _06_Inheritance
 
     }
 
+    public class Horse : Mammal
+    {
+        // protected = private + w/in inherited classes
+        public double Speed { get; protected set; } = 30d;
+        public Horse()
+        {
+            
+        }
+        public void Roar()
+        {
+            base.MakeSound();
+        }
+        public override void MakeSound()
+        {
+            Console.WriteLine($"The {GetType().Name} says Neigh!");
+        }
+
+        public override string ToString()
+        {
+            return "HOOOOOORSE";
+        }
+    }
+
+    public class Mustang : Horse
+    {
+        public Mustang()
+        {
+            Speed = 35d;
+        }
+    }
+
     public class Dog : Mammal
     {
         public bool HasFloppyEars { get; set; }
@@ -29,6 +60,8 @@ namespace _06_Inheritance
         {
             
         }
+
+
     }
 
     public class Reptile : Animal

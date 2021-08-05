@@ -17,6 +17,14 @@ namespace _06_Inheritance
             Console.WriteLine(Nancy.HasFur);
 
             Nancy.MakeSound();
+
+            Horse horse = new Horse();
+            horse.MakeSound();
+            horse.Roar();
+            Console.WriteLine(horse.ToString());
+
+            Mustang musty = new Mustang();
+            musty.MakeSound();
         }
     }
 }
