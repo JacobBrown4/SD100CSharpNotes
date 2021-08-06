@@ -33,6 +33,7 @@ namespace _05_Classes
         private double _width;
         private double _height;
 
+        // Length
         public double Length
         {
             get { return _length; }
@@ -50,6 +51,7 @@ namespace _05_Classes
             }
         }
 
+        // Width
         public double Width
         {
             get { return _width; }
@@ -61,6 +63,7 @@ namespace _05_Classes
                 _width = value; }
         }
 
+        // Height
         public double Height
         {
             get { return _height; }
