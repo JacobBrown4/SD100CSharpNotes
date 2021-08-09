@@ -32,10 +32,23 @@ namespace _07_RepositoryPattern_Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void SetMaturityRating_ShouldGetCorrectFamilyFriendly()
+        [DataTestMethod]
+        [DataRow(MaturityRating.G, true)]
+        [DataRow(MaturityRating.TVG, true)]
+        [DataRow(MaturityRating.R, false)]
+        [DataRow(MaturityRating.PG13, false)]
+        public void SetMaturityRating_ShouldGetCorrectFamilyFriendly(MaturityRating rating, bool expected)
         {
+            // Arrange
+            StreamingContent content = new StreamingContent("Fateful Findings", "A fantastic movie", rating, 5.0, GenreType.SciFi);
 
+            // Act
+            bool actual = content.IsFamilyFriendly;
+            // bool expected = false;
+
+            // Assert
+            Assert.AreEqual(actual, expected);
+            // Assert.IsTrue(actual);
         }
     }
 }

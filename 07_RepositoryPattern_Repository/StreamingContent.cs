@@ -38,6 +38,13 @@ namespace _07_RepositoryPattern_Repository
         public GenreType GenreType { get; set; }
 
         public StreamingContent() { }
+
+        public StreamingContent(string title, MaturityRating rating)
+        {
+            Title = title;
+            MaturityRating = rating;
+        }
+
         public StreamingContent(string title, string description, MaturityRating maturityRating, double stars, GenreType genre)
         {
             /*
