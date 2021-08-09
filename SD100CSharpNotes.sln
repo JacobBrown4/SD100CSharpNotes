@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_Classes", "05_Classes\05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_Inheritance", "06_Inheritance\06_Inheritance.csproj", "{964F2322-A6FA-4204-9290-E465F006AD9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_RepositoryPattern_Repository", "07_RepositoryPattern_Repository\07_RepositoryPattern_Repository.csproj", "{664312C0-A134-46BE-B692-210E3E8A5606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_RepositoryPattern_Tests", "07_RepositoryPattern_Tests\07_RepositoryPattern_Tests.csproj", "{1A13BF1D-95BF-4A47-AD76-79F3E43D01E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{964F2322-A6FA-4204-9290-E465F006AD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964F2322-A6FA-4204-9290-E465F006AD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964F2322-A6FA-4204-9290-E465F006AD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664312C0-A134-46BE-B692-210E3E8A5606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664312C0-A134-46BE-B692-210E3E8A5606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664312C0-A134-46BE-B692-210E3E8A5606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664312C0-A134-46BE-B692-210E3E8A5606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A13BF1D-95BF-4A47-AD76-79F3E43D01E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A13BF1D-95BF-4A47-AD76-79F3E43D01E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A13BF1D-95BF-4A47-AD76-79F3E43D01E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A13BF1D-95BF-4A47-AD76-79F3E43D01E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
