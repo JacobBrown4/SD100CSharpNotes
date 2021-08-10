@@ -8,13 +8,13 @@ namespace _07_RepositoryPattern_Repository
 {
     public class StreamingContentRepository
     {
-        private readonly List<StreamingContent> _contentDirectory = new List<StreamingContent>();
+        protected readonly List<StreamingContent> _contentDirectory = new List<StreamingContent>();
 
         // CRUD
         // Create ✓
         // Read ✓
         // Update ✓
-        // Delete
+        // Delete ✓
 
         // Repository pattern = a "database" or list + CRUD methods
 
