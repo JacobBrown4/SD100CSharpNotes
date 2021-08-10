@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\07_RepositoryPattern_Repository\07_RepositoryPattern_Repository.csproj">
+      <Project>{664312C0-A134-46BE-B692-210E3E8A5606}</Project>
+      <Name>07_RepositoryPattern_Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\08_StreamingContent_Inheritance\08_StreamingContent_Inheritance.csproj">
       <Project>{7FE4569D-32FD-4435-AAFC-03D06D60B759}</Project>
       <Name>08_StreamingContent_Inheritance</Name>
