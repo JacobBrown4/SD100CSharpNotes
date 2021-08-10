@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content\Movie.cs" />
+    <Compile Include="Content\Show.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamingRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\07_RepositoryPattern_Repository\07_RepositoryPattern_Repository.csproj">
+      <Project>{664312c0-a134-46be-b692-210e3e8a5606}</Project>
+      <Name>07_RepositoryPattern_Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
