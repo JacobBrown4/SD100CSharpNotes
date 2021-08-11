@@ -2,6 +2,7 @@
 using _08_StreamingContent_Inheritance;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Design.PluralizationServices;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -22,6 +23,16 @@ namespace _09_StreamingContent_Console.UI
         public void SeedContent()
         {
             Console.WriteLine("Seeding contents...");
+
+            StreamingContent sc1 = new StreamingContent("Freaked", "Alex Winter and Keanu Reeves", MaturityRating.PG, 5, GenreType.Comedy);
+
+            StreamingContent sc2 = new StreamingContent("Jackie Chan's First Strike", "Jackie Chan stops some terrorists", MaturityRating.PG13, 4.5, GenreType.Action);
+
+            StreamingContent sc3 = new StreamingContent("Hawk Jones", "Buddy cop movie with a cast of all children", MaturityRating.PG, 5, GenreType.Comedy);
+
+            _repo.AddContentToDirectory(sc1);
+            _repo.AddContentToDirectory(sc2);
+            _repo.AddContentToDirectory(sc3);
         }
 
         public void Menu()
@@ -47,9 +58,11 @@ namespace _09_StreamingContent_Console.UI
                 {
                     case "1":
                         // Show all content
+                        DisplayAllContents();
                         break;
                     case "2":
                         // Find by title
+                        GetContentByTitle();
                         break;
                     case "3":
                         // Add new content
@@ -57,6 +70,7 @@ namespace _09_StreamingContent_Console.UI
                         break;
                     case "4":
                         // Remove content
+                        RemoveContent();
                         break;
                     case "exit":
                     case "EXIT":
@@ -81,7 +95,55 @@ namespace _09_StreamingContent_Console.UI
             // Console.ReadLine();
         }
 
-        public void AddNewContent()
+        public void DisplayAllContents()
+        {
+            Console.Clear();
+
+            List<StreamingContent> contents = _repo.GetContents();
+
+            foreach (StreamingContent content in contents)
+            {
+                DisplayContent(content);
+            }
+
+            ContinueMessage();
+        }
+
+        public void GetContentByTitle()
+        {
+            Console.Clear();
+            Console.Write("Enter a title: ");
+            string title = Console.ReadLine();
+
+            StreamingContent content = _repo.GetContentByTitle(title);
+
+            if (content == null)
+            {
+                Console.WriteLine("Content not found :(");
+            }
+            else
+            {
+                DisplayContent(content);
+            }
+
+            ContinueMessage();
+        }
+
+        public void DisplayContent(StreamingContent content)
+        {
+            Console.WriteLine($"{content.Title} ({content.MaturityRating}) - {content.Description}. {content.StarRating} {(content.StarRating == 1.0 ? "star" : "stars")}");
+        }
+
+        public void ContinueMessage()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+
+
+
+        private void AddNewContent()
         {
             Console.Clear();
 
@@ -194,6 +256,40 @@ namespace _09_StreamingContent_Console.UI
             }
 
             _repo.AddContentToDirectory(content);
+        }
+
+
+        private void RemoveContent()
+        {
+            Console.Clear();
+            Console.Write("Enter title of item to remove: ");
+
+            string title = Console.ReadLine();
+
+            StreamingContent content = _repo.GetContentByTitle(title);
+
+            if (content == null)
+            {
+                Console.WriteLine("Content not found :(");
+            }
+            else
+            {
+                DisplayContent(content);
+                Console.WriteLine("Are you sure you want to delete this? (y/n)");
+
+                string answer = Console.ReadLine();
+                // y Y yes Yes YES yEs YeS yES
+                if (answer.ToLower() == "y" || answer.ToLower() == "yes")
+                {
+                    _repo.DeleteExistingContent(content);
+                    Console.WriteLine("Content removed!");
+                } else
+                {
+                    Console.WriteLine("Nevermind then...");
+                }
+            }
+
+            ContinueMessage();
         }
     }
 }
