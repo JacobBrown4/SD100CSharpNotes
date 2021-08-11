@@ -65,5 +65,47 @@ namespace _10_Interfaces
 
             Assert.IsTrue(output.Contains("This fruit is called Grape"));
         }
+
+        [TestMethod]
+        public void TypeOfInstance()
+        {
+            var fruitSalad = new List<IFruit>
+            {
+                new Orange(true),
+                new Orange(),
+                new Grape(),
+                new Orange(),
+                new Banana(true),
+                new Grape()
+            };
+
+            foreach(var fruit in fruitSalad)
+            {
+                // Using is keyword
+                if (fruit is Orange orange) // This is called pattern matching
+                {
+                    if (orange.IsPeeled)
+                    {
+                        Console.WriteLine("Is a peeled orange");
+                        orange.Squeeze();
+                    }
+                    else
+                        Console.WriteLine("Is an orange");
+                }
+                // using typeof check
+                else if (fruit.GetType() == typeof(Grape))
+                {
+                    Console.WriteLine("It's a grape");
+
+                    // without pattern matching, we need to cast
+                    var grape = (Grape)fruit;
+                    Console.WriteLine(grape.Peel());
+                }
+                else if (fruit.IsPeeled)
+                    Console.WriteLine("Is a peeled banana.");
+                else
+                    Console.WriteLine("It's a banana.");
+            }
+        }
     }
 }
