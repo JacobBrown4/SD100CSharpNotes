@@ -7,7 +7,7 @@ namespace _06_Inheritance
     public class PersonTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PersonInheritenceTests()
         {
             HourlyEmployee employee1 = new HourlyEmployee();
             employee1.HireDate = new DateTime(1982, 5, 11);
