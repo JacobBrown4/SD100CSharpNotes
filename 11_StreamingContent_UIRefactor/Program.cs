@@ -13,8 +13,8 @@ namespace _11_StreamingContent_UIRefactor
         {
             // RealRandom random = new RealRandom();
             // FunConsole console = new FunConsole(random);
-            // RealConsole console = new RealConsole();
-            SlowConsole console = new SlowConsole();
+            RealConsole console = new RealConsole();
+            // SlowConsole console = new SlowConsole();
             ProgramUI ui = new ProgramUI(console);
             ui.Run();
         }
