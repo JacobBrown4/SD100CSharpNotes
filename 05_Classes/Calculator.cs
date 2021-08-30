@@ -42,6 +42,19 @@ namespace _05_Classes
             return x / y;
         }
 
+        public string GetPercentage(double num, double total)
+        {
+            // adding (concatenating) anything to a string turns it into a string
+            return num / total * 100 + "%";
+        }
+
+        public string DivideWithFractions(int x, int y)
+        {
+            int whole = Div(x, y);
+            int remainder = Remainder(x, y);
+            return whole + " " + remainder + "/" + y;
+        }
+
         // Remainder
         public int Remainder(int x, int y)
         {
@@ -58,5 +71,27 @@ namespace _05_Classes
             return years;
         }
 
+        public double AddAll(double[] numbers)
+        {
+            double sum = 0;
+            for (int i=0; i<numbers.Length; i++)
+            {
+                sum += numbers[i];
+            }
+            return sum;
+
+            foreach (double num in numbers)
+            {
+                sum += num;
+            }
+
+            return numbers.Sum();
+        }
+
+        public double Average(double[] numbers)
+        {
+            double sum = AddAll(numbers);
+            return sum / numbers.Length;
+        }
     }
 }
