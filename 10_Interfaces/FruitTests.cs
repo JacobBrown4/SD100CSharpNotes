@@ -87,7 +87,7 @@ namespace _10_Interfaces
                     if (orange.IsPeeled)
                     {
                         Console.WriteLine("Is a peeled orange");
-                        orange.Squeeze();
+                        Console.WriteLine(orange.Squeeze());
                     }
                     else
                         Console.WriteLine("Is an orange");
