@@ -63,6 +63,18 @@ namespace _13_Async
             }
         }
 
+        public int AddTwo(int a)
+        {
+            int result = a + 2;
+            if (result == 100)
+            {
+                return result;
+            }
+            else
+               return AddTwo(a);
+            
+        }
+
 
         public void PrettyPrint(string process, int color)
         {
