@@ -63,6 +63,7 @@ namespace _13_Async
             }
         }
 
+        // Recursive method, runs itself until satisfied
         public int AddTwo(int a)
         {
             int result = a + 2;
@@ -72,7 +73,6 @@ namespace _13_Async
             }
             else
                return AddTwo(a);
-            
         }
 
 
