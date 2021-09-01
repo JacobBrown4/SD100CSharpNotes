@@ -41,24 +41,92 @@ namespace _14_RestaurantRater.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
-            List<Rating> ratings = await _context.Ratings.ToListAsync();
+            List<RatingDisplay> ratings = await 
+                _context
+                .Ratings
+                .Select(r => new RatingDisplay
+                {
+                    Id = r.Id,
+                    FoodScore = r.FoodScore,
+                    AtmosphereScore = r.FoodScore,
+                    CleanlinessScore = r.CleanlinessScore,
+                    Restaurant = new RestaurantListItem
+                    {
+                        Id = r.Restaurant.Id,
+                        Name = r.Restaurant.Name,
+                        Location = r.Restaurant.Location
+                    }
+                })
+                .ToListAsync();
             return Ok(ratings);
         }
-        //Rid
+        //Rbyid
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            Rating rating = await _context.Ratings.FirstOrDefaultAsync(r => r.Id == id);
+            // LINQuery
+            Rating rating = await _context
+                .Ratings
+                .FirstOrDefaultAsync(
+                r => 
+                r.Id == id);
 
             if(rating != null)
             {
-                return Ok(rating);
+                RatingDisplay display = new RatingDisplay
+                {
+                    Id = rating.Id,
+                    FoodScore = rating.FoodScore,
+                    AtmosphereScore = rating.AtmosphereScore,
+                    CleanlinessScore = rating.CleanlinessScore,
+                    Restaurant = new RestaurantListItem
+                    {
+                        Id = rating.Restaurant.Id,
+                        Name = rating.Restaurant.Name,
+                        Location = rating.Restaurant.Location
+                    }
+                };
+
+                return Ok(display);
             }
             return NotFound();
 
         }
         //U
-        //D
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateRating([FromUri] int id, [FromBody] Rating updatedRating)
+        {
+            if (ModelState.IsValid)
+            {
+                Rating oldRating = await _context.Ratings.FindAsync(id);
 
+                if(oldRating != null)
+                {
+                    oldRating.AtmosphereScore = updatedRating.AtmosphereScore;
+                    oldRating.CleanlinessScore = updatedRating.CleanlinessScore;
+                    oldRating.FoodScore = updatedRating.FoodScore;
+                    await _context.SaveChangesAsync();
+                    return Ok("Rating updated!");
+                }
+                return NotFound();
+            }
+            return BadRequest(ModelState);
+        }
+
+        //D
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteById(int id)
+        {
+            var rating = await _context.Ratings.FindAsync(id);
+            if (rating == null)
+                return NotFound();
+
+            _context.Ratings.Remove(rating);
+
+            if (await _context.SaveChangesAsync() == 1)
+                return Ok("The rating was deleted");
+
+            return InternalServerError();
+        }
     }
 }

@@ -33,7 +33,19 @@ namespace _14_RestaurantRater.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Get()
         {
-            List<Restaurant> restaurants = await _context.Restaurants.ToListAsync();
+            List<RestaurantListItem> restaurants =
+                await _context
+                .Restaurants
+                .Select(
+                    r =>
+                    new RestaurantListItem
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        Location = r.Location
+
+                    }).ToListAsync();
+
             return Ok(restaurants); //200 ok
         }
         //Get by Id
@@ -43,7 +55,17 @@ namespace _14_RestaurantRater.Controllers
             Restaurant restaurant = await _context.Restaurants.FindAsync(id);
             if (restaurant != null)
             {
-                return Ok(restaurant); // 200
+                var restaurantDetail = new RestaurantItem
+                {
+                    Id = restaurant.Id,
+                    Name = restaurant.Name,
+                    Location = restaurant.Location,
+                    AverageRating = restaurant.AverageRating,
+                    AverageFoodScore = restaurant.AverageFoodScore,
+                    AverageAtmosphereScore = restaurant.AverageAtmosphereScore,
+                    AverageCleanlinessScore = restaurant.AverageCleanlinessScore
+                };
+                return Ok(restaurantDetail); // 200
             }
 
             return NotFound(); // 404
