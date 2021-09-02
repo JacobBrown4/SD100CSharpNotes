@@ -37,6 +37,58 @@ namespace GeneralStoreAPI.Controllers
             return Ok(products);
         }
         // U
+        [HttpPut]
+        [Route("api/Product/{id}/Update")]
+        public async Task<IHttpActionResult> UpdateProduct([FromUri] int id, [FromBody] ProductUpdate newProduct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // 400
+            }
+
+            Product oldProduct = await _context.Products.FindAsync(id);
+            
+            if (oldProduct == null)
+            {
+                return NotFound(); // 404
+            }
+
+            oldProduct.Name = newProduct.Name;
+            oldProduct.Price = newProduct.Price;
+            // oldProduct.Quantity = newProduct.Quantity;
+            oldProduct.UPC = newProduct.UPC;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(); // 200
+        }
+
+        [HttpPut]
+        [Route("api/Product/{id}/Restock")]
+
+        // Define the pattern in App_Start/RouteConfig.cs
+
+        //        route      action
+        // ../api/Product/1/Restock
+        // OR
+        // ../api/Product/Restock/1
+
+        // ../api/Product/1/SomethingElse
+
+        public async Task<IHttpActionResult> RestockProduct([FromUri] int id, [FromBody] Restock restock)
+        {
+            Product product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.Quantity += restock.Amount;
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
         // D
     }
 }
