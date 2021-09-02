@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -172,8 +173,13 @@
     <Compile Include="Migrations\202109012048111_initial_migration.designer.cs">
       <DependentUpon>202109012048111_initial_migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109021532447_customerJoinDate.cs" />
+    <Compile Include="Migrations\202109021532447_customerJoinDate.designer.cs">
+      <DependentUpon>202109021532447_customerJoinDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerCreate.cs" />
     <Compile Include="Models\GeneralStoreDbContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductUpdate.cs" />
@@ -267,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202109012048111_initial_migration.resx">
       <DependentUpon>202109012048111_initial_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109021532447_customerJoinDate.resx">
+      <DependentUpon>202109021532447_customerJoinDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

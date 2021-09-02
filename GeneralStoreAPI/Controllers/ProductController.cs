@@ -33,9 +33,22 @@ namespace GeneralStoreAPI.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAllProducts()
         {
+            // If we have soft delete, we would want to exclude archived/deleted products with .Where(p => !p.Deleted)
             List<Product> products = await _context.Products.ToListAsync();
             return Ok(products);
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetProductById([FromUri] int id)
+        {
+            Product product = await _context.Products.FindAsync(id);
+            if (product == null) //  if (product == null || product.Deleted)   if we're using soft delete
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
         // U
         [HttpPut]
         [Route("api/Product/{id}/Update")]
@@ -90,5 +103,21 @@ namespace GeneralStoreAPI.Controllers
             return Ok();
         }
         // D
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteProduct([FromUri] int id)
+        {
+            Product product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Actually delete the product
+            _context.Products.Remove(product);
+            // Archive the product without taking it out of the db
+            // product.Deleted = true;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
     }
 }
