@@ -8,6 +8,7 @@ namespace _14_RestaurantRater.Models
 {
     public class Restaurant
     {
+		// Restaurant Class
         [Key]
         public int Id { get; set; }
         [Required]
